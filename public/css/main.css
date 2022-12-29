@@ -1,0 +1,34 @@
+body {
+    display: grid;
+    place-items: center;
+    font-family: 'Arial';
+}
+.form {
+    border: 1px solid lightgray;
+    padding: 1em;
+    margin: 1em;
+}
+.form .title {
+    text-align: center;
+    margin: 0;
+}
+.wrapper {
+    display: flex;
+    gap: 0.5em;
+    margin-bottom: 0.5em;
+}
+.cell {
+    width: 6em;
+    height: 6em;
+    border: 1px solid black;
+}
+.restart-btn {
+    padding: 0.5em;
+    margin-block: 1em;
+}
+.green {
+    background: green;
+}
+.orange {
+    background-color: orange;
+}
