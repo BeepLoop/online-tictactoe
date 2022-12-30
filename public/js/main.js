@@ -1,7 +1,6 @@
 const boardContainer = document.getElementById('board')
-const gameOverDisplay = document.getElementById('text')
-const restart = document.getElementById('restart')
 const copyButton = document.getElementById('copy')
+const prompt = document.getElementById('prompt')
 const gameId = document.getElementById('gameId').innerHTML.split(':')[1].trim()
 const playerName = document
     .getElementById('player')
@@ -32,21 +31,20 @@ socket.on('playerLeave', (data) => {
 
 socket.on('won', (data) => {
     won = true
-    gameOverDisplay.innerHTML = `${data.winner} won!`
+    prompt.innerHTML = `${data.winner} Won!`
 })
 
 socket.on('gameInit', (gameData) => {
     turnToPick = gameData.turnToPick
-    boardContainer.innerHTML = 'waiting for other player'
+    prompt.innerHTML = 'Waiting for other player...'
 })
 
 socket.on('board', (gameData) => {
     playerToPick = gameData.playerToPick
     firstPlayerTiles = gameData.firstPlayerTiles
     secondPlayerTiles = gameData.secondPlayerTiles
+    prompt.innerHTML = `Turn: Player ${playerToPick}`
     makeBoard(gameData.board)
-    console.log({ playerToPick })
-    console.table({ firstPlayerTiles, secondPlayerTiles })
 })
 
 document.addEventListener('click', (event) => {
@@ -54,30 +52,19 @@ document.addEventListener('click', (event) => {
     if (playerToPick !== turnToPick) return
     if (!event.target.classList.contains('cell')) return
 
-    console.log(event.target.dataset.id)
-
     socket.emit('tileSelect', {
         gameId: gameId,
         player: playerName,
         tile: event.target.dataset.id,
     })
-
-    // if (firstPlayer.length + secondPlayer.length + 1 >= 9) {
-    //     gameOverDisplay.innerHTML = 'Game Over'
-    // }
-
-    // clearBoard(boardContainer)
-})
-
-restart.addEventListener('click', () => {
-    socket.emit('restart')
-    clearBoard(boardContainer)
-    gameOverDisplay.innerHTML = ''
 })
 
 copy.addEventListener('click', () => {
     navigator.clipboard.writeText(gameId)
-    alert('copied game ID')
+    copy.innerHTML = 'Copied'
+    setTimeout(() => {
+        copy.innerHTML = 'Copy Game ID'
+    }, 2000)
 })
 
 function makeBoard(board) {

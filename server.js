@@ -118,19 +118,6 @@ io.on('connection', (socket) => {
         }
     })
 
-    socket.on('restart', () => {
-        firstPlayerTiles = []
-        secondPlayerTiles = []
-        playerToPick = 1
-
-        socket.emit('board', {
-            board: BOARD,
-            firstPlayerTiles,
-            secondPlayerTiles,
-            playerToPick,
-        })
-    })
-
     socket.on('disconnect', () => {
         const playerLeave = db.leaveGame(socket.id)
         if (playerLeave.success === true) {
