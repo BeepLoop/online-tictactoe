@@ -13,6 +13,7 @@ let firstPlayerTiles = []
 let secondPlayerTiles = []
 let playerToPick
 let turnToPick
+let won = false
 
 socket.emit('game', { playerName: playerName, gameId: gameId })
 
@@ -30,6 +31,7 @@ socket.on('playerLeave', (data) => {
 })
 
 socket.on('won', (data) => {
+    won = true
     gameOverDisplay.innerHTML = `${data.winner} won!`
 })
 
@@ -48,6 +50,7 @@ socket.on('board', (gameData) => {
 })
 
 document.addEventListener('click', (event) => {
+    if (won) return
     if (playerToPick !== turnToPick) return
     if (!event.target.classList.contains('cell')) return
 

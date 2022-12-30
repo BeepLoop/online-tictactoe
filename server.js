@@ -109,6 +109,12 @@ io.on('connection', (socket) => {
                 secondPlayerTiles: roomPlayers[1].playerTiles,
                 playerToPick: playerToPick,
             })
+
+            if (won(playerTile.playerTiles)) {
+                io.to(data.gameId).emit('won', {
+                    winner: playerTile.playerName,
+                })
+            }
         }
     })
 
@@ -133,6 +139,7 @@ io.on('connection', (socket) => {
             })
         }
         console.log('user disconnected')
+        console.log(db.getUsers())
     })
 })
 

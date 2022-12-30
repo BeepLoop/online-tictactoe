@@ -13,7 +13,8 @@ An online multiplayer ticktacktoe game made with vanilla JavaScript and Socket.i
 *   [x] implement turn-based system for picking tiles
 *   [x] color the tiles the players have selected
 *   [x] players should be unable to pick selected tiles
-*   [ ] determine if a player have won
-*   [ ] notify if a player won
+*   [x] determine if a player have won
+*   [x] notify if a player won
 *   [ ] implement restart function
+*   [ ] implement matchmaking with random players
 
