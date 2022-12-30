@@ -4,7 +4,8 @@
   "description": "multiplayer tictactoe game",
   "main": "server.js",
   "scripts": {
-    "test": "nodemon server.js"
+    "test": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "John Loyd Mulit",
   "license": "MIT",
