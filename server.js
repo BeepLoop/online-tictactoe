@@ -119,13 +119,16 @@ io.on('connection', (socket) => {
     })
 
     socket.on('disconnect', () => {
+        const currentPlayer = db.getCurrentPlayer(socket.id)
         const playerLeave = db.leaveGame(socket.id)
         if (playerLeave.success === true) {
-            io.to(playerLeave.data[0].gameId).emit('playerLeave', {
-                message: 'your opponent left the game',
-            })
+            if (playerLeave.data.length > 0) {
+                io.to(playerLeave.data[0].gameId).emit('playerLeave', {
+                    message: 'your opponent left the game',
+                })
+            }
         }
-        console.log('user disconnected')
+        console.log(`${currentPlayer.playerName} disconnected`)
         console.log(db.getUsers())
     })
 })

@@ -1,5 +1,6 @@
 const boardContainer = document.getElementById('board')
 const copyButton = document.getElementById('copy')
+const quit = document.getElementById('quit')
 const prompt = document.getElementById('prompt')
 const gameId = document.getElementById('gameId').innerHTML.split(':')[1].trim()
 const playerName = document
@@ -65,6 +66,10 @@ copy.addEventListener('click', () => {
     setTimeout(() => {
         copy.innerHTML = 'Copy Game ID'
     }, 2000)
+})
+
+quit.addEventListener('click', () => {
+    window.location.href = '/'
 })
 
 function makeBoard(board) {
