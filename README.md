@@ -3,6 +3,9 @@
 ## Description
 An online multiplayer ticktacktoe game made with vanilla JavaScript and Socket.io
 
+## Demo
+You can try the working prototype [here](https://ticktacktoe.onrender.com/)
+
 ## TODO
 *   [x] initialize game board in the server 
 *   [x] initialize memory storage of players 
