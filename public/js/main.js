@@ -24,6 +24,11 @@ socket.on('tileError', (error) => {
     alert(error.errorMessage)
 })
 
+socket.on('playerLeave', (data) => {
+    console.log('player left')
+    alert(data.message)
+})
+
 socket.on('won', (data) => {
     gameOverDisplay.innerHTML = `${data.winner} won!`
 })
@@ -83,13 +88,13 @@ function makeBoard(board) {
             cell.classList.add('cell')
             cell.dataset.id = item
 
-            // if (firstPlayer.includes(item.toString())) {
-            //     cell.classList.add('green')
-            // }
+            if (firstPlayerTiles.includes(item.toString())) {
+                cell.classList.add('green')
+            }
 
-            // if (secondPlayer.includes(item.toString())) {
-            //     cell.classList.add('orange')
-            // }
+            if (secondPlayerTiles.includes(item.toString())) {
+                cell.classList.add('orange')
+            }
 
             wrapper.appendChild(cell)
         })

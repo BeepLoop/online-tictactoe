@@ -36,6 +36,23 @@ user.getPlayerByName = (playerName) => {
     return player
 }
 
+user.getCurrentPlayer = (playerId) => {
+    const player = users.find((user) => user.playerId === playerId)
+    return player
+}
+
+user.leaveGame = (playerId) => {
+    const playerIndex = users.findIndex((user) => user.playerId === playerId)
+    console.log({ playerIndex })
+
+    if (playerIndex !== -1) {
+        users.splice(playerIndex, 1)
+        return { success: true, data: users }
+    } else {
+        return { success: false, error: 'cannot find the user' }
+    }
+}
+
 user.getUsers = () => {
     return users
 }

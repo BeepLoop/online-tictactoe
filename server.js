@@ -8,8 +8,6 @@ const io = new Server(server)
 const db = require('./users')
 const PORT = process.env.PORT || 3000
 
-// let firstPlayerTiles = []
-// let secondPlayerTiles = []
 let playerToPick = 1
 const BOARD = [
     [1, 2, 3],
@@ -128,6 +126,12 @@ io.on('connection', (socket) => {
     })
 
     socket.on('disconnect', () => {
+        const playerLeave = db.leaveGame(socket.id)
+        if (playerLeave.success === true) {
+            io.to(playerLeave.data[0].gameId).emit('playerLeave', {
+                message: 'your opponent left the game',
+            })
+        }
         console.log('user disconnected')
     })
 })
