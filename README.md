@@ -17,4 +17,8 @@ An online multiplayer ticktacktoe game made with vanilla JavaScript and Socket.i
 *   [x] notify if a player won
 *   [ ] implement restart function
 *   [ ] implement matchmaking with random players
+*   [ ] Round system (win 3 rounds for victory)
+*   [ ] Scoring system
+*   [ ] Revamp UI
+*   [ ] Revamp board elements
 
